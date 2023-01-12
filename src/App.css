@@ -1,38 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 .App {
+  height: 50em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Content {
+  display: grid;
+  grid-template-columns: 366px 357px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.PlayerH {
+  display: grid;
+  grid-template-rows: 266px 199px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Player {
+  margin: 32px;
+}
+
+.Text {
+  align-self: center;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.Image {
+  height: fit-content;
+  width: fit-content;
+  border-radius: 6px;
+}
+
+.buttons {
+  align-self: center;
+  width: 250px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttonsComponent {
+  height: 50px;
+  width: 50px;
+  background-color: #2a2141;
+  border: none;
+}
+
+.buttonIcons {
+  color: #e1e1e6;
+  width: 30px;
+  height: 30px;
+}
+
+#PlayerOne {
+  /* width: 286px; */
+  height: 498px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-start;
+  background-color: #2a2141;
+  border-radius: 9.6px;
 }
 
-.App-link {
-  color: #61dafb;
+#PlayerTwo {
+  background-color: blue;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#PlayerThree {
+  background-color: green;
+}
+
+#ImageOne {
+  margin-top: 40px;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+#Name {
+  margin-bottom: 5px;
+  margin-top: 0px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #e1e1e6;
+}
+
+#Author {
+  margin-top: 0px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: #e1e1e6;
 }
