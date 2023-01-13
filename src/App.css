@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.Audio {
+  display: none;
+}
+
 .Content {
   display: grid;
   grid-template-columns: 366px 357px;
@@ -32,6 +36,7 @@
   height: fit-content;
   width: fit-content;
   border-radius: 6px;
+  align-self: center;
 }
 
 .buttons {
@@ -52,6 +57,47 @@
   color: #e1e1e6;
   width: 30px;
   height: 30px;
+}
+
+input[type="range"] {
+  overflow: hidden;
+  width: 210px;
+  border-radius: 20px;
+  height: 5px;
+  appearance: none;
+  background-color: #868686;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 10px;
+  -webkit-appearance: none;
+  color: #d9d9d9;
+  margin-top: -1px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  width: 10px;
+  -webkit-appearance: none;
+  height: 10px;
+  cursor: ew-resize;
+  background: #d9d9d9;
+  box-shadow: -80px 0 0 80px #d9d9d9;
+}
+
+input[type="range"]::-moz-range-progress {
+  background-color: #d9d9d9;
+  height: 5px;
+  border: none;
+}
+
+input[type="range"]::-moz-range-track {
+  background-color: #868686;
+  border: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 20px;
 }
 
 #PlayerOne {

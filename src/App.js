@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Franguinho from "./assets/franguinho.jpg";
+import Musica from "./songs/Franguinho Na Panela   Lourenço u0026 Lourival  (2002[1].mp3";
 import {
   BsFillPauseFill,
   BsFillPlayFill,
@@ -9,14 +10,31 @@ import {
 } from "react-icons/bs";
 
 function App() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  // REFS
+  const audioRef = useRef();
+  const progressRef = useRef(0);
 
+  // STATES
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [listener, setListener] = useState(0);
+
+  // EFFECTS
+  useEffect(() => {
+    progressRef.current = getPercentage(audioRef);
+  }, [listener]);
+
+  // FUNCTIONS
   const getButton = (isPlaying) => {
     if (isPlaying) {
       return <BsFillPauseFill className="buttonIcons" />;
     } else {
       return <BsFillPlayFill className="buttonIcons" />;
     }
+  };
+
+  const getPercentage = (ref) => {
+    const percentage = (ref.current.currentTime / ref.current.duration) * 100;
+    return percentage;
   };
 
   return (
@@ -36,12 +54,20 @@ function App() {
             <p id="Author">Lourenço e Lorival</p>
           </div>
           <div className="buttons">
-            <button className="buttonsComponent">
+            <button
+              className="buttonsComponent"
+              onClick={() => {
+                console.log(audioRef.current.currentTime + " current time");
+                console.log(audioRef.current.duration + " duration");
+                console.log(getPercentage(audioRef) + " percentage");
+              }}
+            >
               {<BsFillSkipBackwardFill className="buttonIcons" />}
             </button>
             <button
               className="buttonsComponent"
               onClick={() => {
+                isPlaying ? audioRef.current.pause() : audioRef.current.play();
                 setIsPlaying(!isPlaying);
               }}
             >
@@ -50,9 +76,31 @@ function App() {
             <button className="buttonsComponent">
               {<BsFillSkipForwardFill className="buttonIcons" />}
             </button>
-            <div>
-              <audio src="./songs/Franguinho Na Panela   Lourenço u0026 Lourival  (2002[1].mp3"></audio>
-            </div>
+          </div>
+          <div className="ProgressBar">
+            <input
+              className="ProgressInput"
+              type={"range"}
+              min={0}
+              max={100}
+              defaultValue={0}
+              value={progressRef.current}
+              onChange={(e) => {
+                progressRef.current = e.target.value;
+                const current =
+                  (e.target.value * audioRef.current.duration) / 100;
+                audioRef.current.currentTime = current;
+              }}
+            />
+          </div>
+          <div className="Audio">
+            <audio
+              src={Musica}
+              ref={audioRef}
+              onTimeUpdate={() => {
+                setListener(listener + 1);
+              }}
+            />
           </div>
         </div>
         <div className="PlayerH">
